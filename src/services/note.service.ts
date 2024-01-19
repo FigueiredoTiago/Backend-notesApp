@@ -43,3 +43,8 @@ export const getByTitle = async (title: string) => {
     })),
   };
 };
+
+
+//service para deletar de uma nota pelo id
+
+export const deleteById = (id: string) => Note.findByIdAndDelete(id);

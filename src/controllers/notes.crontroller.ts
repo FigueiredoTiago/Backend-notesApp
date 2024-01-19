@@ -7,6 +7,7 @@ import {
   getById,
   updateById,
   getByTitle,
+  deleteById,
 } from "../services/note.service";
 
 //controller usado para buscar todas as notas
@@ -128,5 +129,26 @@ export const getNoteByTitle = async (req: Request, res: Response) => {
     return res.send(notes);
   } catch (err) {
     res.status(500).send({ message: err });
+  }
+};
+
+//controller usado para deletar uma nota pelo id
+
+export const deleteNote = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  try {
+    const note = await getById(id);
+
+    if (!note) {
+      return res.status(404).send({ message: "Nota não encontrada." });
+    }
+
+    await deleteById(id);
+
+    res.status(200).send({ message: "Nota deletada com sucesso!" });
+  } catch (error) {
+    console.error("Erro ao deletar a nota:", error);
+    res.status(500).send({ message: "Erro ao deletar a nota." });
   }
 };

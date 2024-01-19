@@ -8,6 +8,7 @@ import {
   getNoteById,
   updateNote,
   getNoteByTitle,
+  deleteNote
 } from "../controllers/notes.crontroller";
 
 //middlewares
@@ -27,5 +28,8 @@ router.post("/", createNote);
 
 //rota para atualizar uma nota pelo id
 router.patch("/:id", validateNoteId, updateNote);
+
+//rota para deletar uma nota pelo id
+router.delete("/:id", validateNoteId, deleteNote);
 
 export default router;
