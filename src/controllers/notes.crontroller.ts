@@ -8,6 +8,7 @@ import {
   updateById,
   getByTitle,
   deleteById,
+  getFavorites,
 } from "../services/note.service";
 
 //controller usado para buscar todas as notas
@@ -150,5 +151,17 @@ export const deleteNote = async (req: Request, res: Response) => {
   } catch (error) {
     console.error("Erro ao deletar a nota:", error);
     res.status(500).send({ message: "Erro ao deletar a nota." });
+  }
+};
+
+//controller usado para buscar notas apenas que o campo favorite seja true
+export const findFavorites = async (req: Request, res: Response) => {
+  try {
+    const notes = await getFavorites();
+
+    res.status(200).send({ notes });
+  } catch (error) {
+    console.error("Erro ao listar as notas:", error);
+    res.status(500).send({ message: "Erro ao listar as notas." });
   }
 };

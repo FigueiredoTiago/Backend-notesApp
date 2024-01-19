@@ -8,7 +8,8 @@ import {
   getNoteById,
   updateNote,
   getNoteByTitle,
-  deleteNote
+  deleteNote,
+  findFavorites,
 } from "../controllers/notes.crontroller";
 
 //middlewares
@@ -16,6 +17,9 @@ import { validateNoteId } from "../middlewares/notes.middleware";
 
 //rota para pegar todas as notas
 router.get("/", getNotes);
+
+//rota para buscar notas favoritas
+router.get("/favorites", findFavorites);
 
 //rota para buscar uma nota pelo titulo
 router.get("/search", getNoteByTitle);

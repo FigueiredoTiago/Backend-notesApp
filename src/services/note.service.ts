@@ -44,7 +44,8 @@ export const getByTitle = async (title: string) => {
   };
 };
 
-
 //service para deletar de uma nota pelo id
-
 export const deleteById = (id: string) => Note.findByIdAndDelete(id);
+
+//service para buscar notas apenas que o campo favorite seja true
+export const getFavorites = () => Note.find({ favorite: true });
