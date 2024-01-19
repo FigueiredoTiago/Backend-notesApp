@@ -1,7 +1,9 @@
 import express from "express";
-import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cors from "cors";
+
+//rotas
+import notesRoutes from "./routes/notes.route";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -9,10 +11,9 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get("/home", (req, res) => {
-  res.send("Hello World!");
-});
+//rotas
+app.use("/notes", notesRoutes);
 
 app.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
+  console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
 });
