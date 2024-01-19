@@ -14,3 +14,6 @@ export const create = (body: NoteRequestBody) => Note.create(body);
 
 //service de listagem de todas as notas
 export const getAll = () => Note.find();
+
+//service de busca de uma nota pelo id
+export const getById = (id: string) => Note.findById(id);
