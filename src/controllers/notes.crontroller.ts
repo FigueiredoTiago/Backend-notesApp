@@ -1,11 +1,22 @@
 import { Request, Response } from "express";
 //services
-import { create } from "../services/note.service";
+import { create, getAll } from "../services/note.service";
 
-export const getNotes = (req: Request, res: Response) => {
-  const notes = "notes";
+export const getNotes = async (req: Request, res: Response) => {
+  try {
+    const notes = await getAll();
 
-  res.send({ notes });
+    if (notes.length === 0) {
+      return res.status(404).send({ message: "Nada Por aqui ainda..." });
+    }
+    
+    res.status(200).send({ notes });
+
+
+  } catch (error) {
+    console.error("Erro ao listar as notas:", error);
+    res.status(500).send({ message: "Erro ao listar as notas." });
+  }
 };
 
 export const createNote = async (req: Request, res: Response) => {

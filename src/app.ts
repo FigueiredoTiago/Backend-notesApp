@@ -8,7 +8,7 @@ dotenv.config();
 import {connectDatabase} from "./database/database";
 
 //rotas
-import notesRoutes from "./routes/notes.route";
+import notesRoute from "./routes/notes.route";
 
 
 
@@ -20,7 +20,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //rotas
-app.use("/notes", notesRoutes);
+app.use("/notes", notesRoute);
 
 app.listen(PORT, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);

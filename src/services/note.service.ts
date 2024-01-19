@@ -1,5 +1,4 @@
 import Note from "../models/Note";
-
 //arquivo usado para lidar com a manipulação de dados
 
 interface NoteRequestBody {
@@ -7,7 +6,11 @@ interface NoteRequestBody {
   description: string;
   color?: string;
   favorite?: boolean;
-  // Adicione outras propriedades conforme necessário
 }
 
+
+//service de criação de notas
 export const create = (body: NoteRequestBody) => Note.create(body);
+
+//service de listagem de todas as notas
+export const getAll = () => Note.find();
