@@ -25,4 +25,21 @@ export const updateById = (
   description: string,
   color: string,
   favorite: boolean
-) => Note.findOneAndUpdate({ _id: id }, { title, description, color, favorite });
+) =>
+  Note.findOneAndUpdate({ _id: id }, { title, description, color, favorite });
+
+//service de busca de uma nota pelo titulo
+
+export const getByTitle = async (title: string) => {
+  const notes = await Note.find({ title: { $regex: title, $options: "i" } });
+
+  return {
+    results: notes.map((note) => ({
+      id: note._id,
+      title: note.title,
+      description: note.description,
+      color: note.color,
+      favorite: note.favorite,
+    })),
+  };
+};

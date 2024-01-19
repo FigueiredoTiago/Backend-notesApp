@@ -1,7 +1,13 @@
 import { Request, Response } from "express";
 import mongoose from "mongoose";
 //services
-import { create, getAll, getById, updateById } from "../services/note.service";
+import {
+  create,
+  getAll,
+  getById,
+  updateById,
+  getByTitle,
+} from "../services/note.service";
 
 //controller usado para buscar todas as notas
 export const getNotes = async (req: Request, res: Response) => {
@@ -79,7 +85,6 @@ export const createNote = async (req: Request, res: Response) => {
 };
 
 //controller usado para atualizar uma nota pelo id
-
 export const updateNote = async (req: Request, res: Response) => {
   try {
     let { title, description, color, favorite } = req.body;
@@ -106,5 +111,22 @@ export const updateNote = async (req: Request, res: Response) => {
   } catch (error) {
     console.error("Erro ao criar a nota:", error);
     res.status(500).send({ message: "Erro ao criar a nota." });
+  }
+};
+
+//controller usado para buscar uma nota pelo titulo
+export const getNoteByTitle = async (req: Request, res: Response) => {
+  const { title } = req.query;
+
+  try {
+    const notes = await getByTitle(title as string);
+
+    if (notes.results.length === 0) {
+      return res.status(404).send({ message: "Nenhum resultado encontrado." });
+    }
+
+    return res.send(notes);
+  } catch (err) {
+    res.status(500).send({ message: err });
   }
 };
