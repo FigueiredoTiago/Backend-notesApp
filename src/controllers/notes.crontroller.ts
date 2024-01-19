@@ -24,10 +24,6 @@ export const getNoteById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).send({ message: "Id inválido." });
-    }
-
     const note = await getById(id);
 
     if (!note) {
@@ -95,10 +91,6 @@ export const updateNote = async (req: Request, res: Response) => {
     }
 
     const { id } = req.params;
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).send({ message: "Id inválido." });
-    }
 
     const note = await getById(id);
 
