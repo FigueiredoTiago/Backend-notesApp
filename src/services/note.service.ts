@@ -2,12 +2,7 @@
 
 import Note from "../models/Note";
 
-interface NoteRequestBody {
-  title: string;
-  description: string;
-  color?: string;
-  favorite?: boolean;
-}
+import { NoteRequestBody } from "../interfaces/note.interface";
 
 //service de criação de notas
 export const create = (body: NoteRequestBody) => Note.create(body);

@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import mongoose from "mongoose";
+import { NoteRequestBody } from "../interfaces/note.interface";
+
 //services
 import {
   create,
@@ -48,7 +50,7 @@ export const getNoteById = async (req: Request, res: Response) => {
 //controller usado para criar uma nova nota
 export const createNote = async (req: Request, res: Response) => {
   try {
-    let { title, description, color, favorite } = req.body;
+    let { title, description, color, favorite } = req.body as NoteRequestBody;
 
     if (!title || !description) {
       return res
@@ -89,7 +91,7 @@ export const createNote = async (req: Request, res: Response) => {
 //controller usado para atualizar uma nota pelo id
 export const updateNote = async (req: Request, res: Response) => {
   try {
-    let { title, description, color, favorite } = req.body;
+    let { title, description, color, favorite } = req.body as NoteRequestBody;
 
     if (!title && !description && !color && favorite === undefined) {
       return res
@@ -105,7 +107,13 @@ export const updateNote = async (req: Request, res: Response) => {
       return res.status(404).send({ message: "Nota não encontrada." });
     }
 
-    await updateById(id, title, description, color, favorite);
+    await updateById(
+      id,
+      title,
+      description,
+      color as string,
+      favorite as boolean
+    );
 
     res.status(200).send({
       message: "Nota atualizada com sucesso!",
