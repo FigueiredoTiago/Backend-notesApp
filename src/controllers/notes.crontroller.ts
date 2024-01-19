@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import mongoose from "mongoose";
 //services
-import { create, getAll, getById } from "../services/note.service";
+import { create, getAll, getById, updateById } from "../services/note.service";
 
 //controller usado para buscar todas as notas
 export const getNotes = async (req: Request, res: Response) => {
@@ -64,7 +64,7 @@ export const createNote = async (req: Request, res: Response) => {
       favorite = false;
     }
 
-    const note = await create(req.body);
+    const note = await create({ title, description, color, favorite });
 
     res.status(200).send({
       message: "Nota criada com sucesso!",
@@ -75,6 +75,41 @@ export const createNote = async (req: Request, res: Response) => {
         color,
         favorite,
       },
+    });
+  } catch (error) {
+    console.error("Erro ao criar a nota:", error);
+    res.status(500).send({ message: "Erro ao criar a nota." });
+  }
+};
+
+//controller usado para atualizar uma nota pelo id
+
+export const updateNote = async (req: Request, res: Response) => {
+  try {
+    let { title, description, color, favorite } = req.body;
+
+    if (!title && !description && !color && favorite === undefined) {
+      return res
+        .status(400)
+        .send({ message: "Escreva algo na nota antes de editar..." });
+    }
+
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).send({ message: "Id inválido." });
+    }
+
+    const note = await getById(id);
+
+    if (!note) {
+      return res.status(404).send({ message: "Nota não encontrada." });
+    }
+
+    await updateById(id, title, description, color, favorite);
+
+    res.status(200).send({
+      message: "Nota atualizada com sucesso!",
     });
   } catch (error) {
     console.error("Erro ao criar a nota:", error);
