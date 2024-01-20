@@ -19,9 +19,13 @@ export const updateById = (
   title: string,
   description: string,
   color: string,
-  favorite: boolean
+  favorite: boolean,
 ) =>
-  Note.findOneAndUpdate({ _id: id }, { title, description, color, favorite });
+  Note.findOneAndUpdate(
+    { _id: id },
+    { title, description, color, favorite },
+    { new: true },
+  );
 
 //service de busca de uma nota pelo titulo
 

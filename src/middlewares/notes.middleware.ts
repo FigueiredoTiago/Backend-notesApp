@@ -5,7 +5,7 @@ import { Request, Response, NextFunction } from "express";
 export const validateNoteId = (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { id } = req.params;
 
