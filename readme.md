@@ -4,9 +4,9 @@ Para Iniciar a API Localmente:
 
 Certifique-se de ter O NodeJS instalado em sua maquina,
 
-Use o Comando NPM INSTALL no Terminal para Instalar as dependencias,
+Use o Comando NPM INSTALL no Terminal para Instalar as dependências,
 
-No Arquivo .ENV cole sua URL de Acesso ao seu Banco de Dados MongoDB, seguindo esse padrao:
+No Arquivo .ENV cole sua URL de Acesso ao seu Banco de Dados MongoDB, seguindo esse padrão:
 
 DBURL = mongodb+srv://pass:mth5OIfXMV00p4G8@seuNodeDeBancoEx.tn3p24e.mongodb.net/?retryWrites=true&w=majority
 
