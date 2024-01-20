@@ -1,4 +1,20 @@
-# Pull Request
+##Instructions
+
+Para Iniciar a API Localmente:
+
+Certifique-se de ter O NodeJS instalado em sua maquina,
+
+Use o Comando NPM INSTALL no Terminal para Instalar as dependencias,
+
+No Arquivo .ENV cole sua URL de Acesso ao seu Banco de Dados MongoDB, seguindo esse padrao:
+
+DBURL = mongodb+srv://pass:mth5OIfXMV00p4G8@seuNodeDeBancoEx.tn3p24e.mongodb.net/?retryWrites=true&w=majority
+
+OBS: Deixei A variavel .ENV Presente nesse repositorio Junto com minha URL do Banco de dados de teste, Fica a Criterio Troca-la ou Não.
+
+E utilize o Comando NPM START no terminal para Iniciar o Servidor Local,
+
+Leia abaixo como utilizar as Rotas da API.
 
 ## Description
 
@@ -9,19 +25,19 @@ Node.js, TypeScript, Express, MongoDb, Mongoose, Nodemoon.
 
 Rotas da API:
 
-GET /: Retorna todas as notas. Esta rota está associada à função getNotes.
+GET notes/: Retorna todas as notas. Esta rota está associada à função getNotes.
 
-GET /favorites: Retorna todas as notas marcadas como favoritas. Esta rota está associada à função findFavorites.
+GET notes/favorites: Retorna todas as notas marcadas como favoritas. Esta rota está associada à função findFavorites.
 
-GET /search: Retorna uma nota com base em seu título. Esta rota está associada à função getNoteByTitle.
+GET notes/search: Retorna uma nota com base em seu título. Esta rota está associada à função getNoteByTitle.
 
-GET /:id: Retorna uma nota com base em seu ID. Antes de executar a função getNoteById, o middleware validateNoteId é chamado para verificar se o ID é válido.
+GET note/:id: Retorna uma nota com base em seu ID. Antes de executar a função getNoteById, o middleware validateNoteId é chamado para verificar se o ID é válido.
 
-POST /: Cria uma nova nota. Esta rota está associada à função createNote.
+POST notes/: Cria uma nova nota. Esta rota está associada à função createNote Utilizando os dados que vem no body da requisição,
 
-PATCH /:id: Atualiza uma nota com base em seu ID. Antes de executar a função updateNote, o middleware validateNoteId é chamado para verificar se o ID é válido.
+PATCH notes/:id: Atualiza uma nota com base em seu ID. Utilizando os dados que vem no body da requisição, Antes de executar a função updateNote, o middleware validateNoteId é chamado para verificar se o ID é válido.
 
-DELETE /:id: Deleta uma nota com base em seu ID. Antes de executar a função deleteNote, o middleware validateNoteId é chamado para verificar se o ID é válido.
+DELETE notes/:id: Deleta uma nota com base em seu ID. Antes de executar a função deleteNote, o middleware validateNoteId é chamado para verificar se o ID é válido.
 
 ############################################################################################################################################################
 
@@ -129,17 +145,16 @@ PARA O AVALIADOR:
 Estou disponibilizando o Arquivo .env com Minha URL de Acesso ao Banco de Dados, por motivos de Agilidade para demonstrar a API.
 
 ## Checklist
+
 O código segue um estilo de formatação consistente. [ x ]
 As indentações e espaçamentos são aplicados de forma uniforme. [ x ]
 Não há linhas de código excessivamente longas. [ x ]
 Desempenho do Código: [ x ]
 O código evita operações desnecessárias e otimizações estão presentes quando necessário.[ x ]
-Os nomes de variáveis, funções e classes são descritivos e seguindo boas práticas de nomenclatura. [ x ]
+Os nomes de variáveis e funções são descritivos e seguindo boas práticas de nomenclatura. [ x ]
 Comentários são utilizados quando necessário para explicar partes do código. [ x ]
 As responsabilidades do código são claramente definidas, seguindo os princípios de separação de interesses. [ x ]
-Módulos, classes e componentes são específicos e não têm funcionalidades excessivas. [ x ]
 Todas as funcionalidades listadas nos requisitos são implementadas corretamente. [ x ]
-Todas as funcionalidades e requisitos do aplicativo são atendidos.[ x ]
 O código está bem organizado em uma estrutura lógica e modular.[ x ]
 A documentação está atualizada, explicando a estrutura e funcionamento do código.[ x ]
 
