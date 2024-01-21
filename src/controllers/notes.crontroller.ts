@@ -61,7 +61,7 @@ export const createNote = async (req: Request, res: Response) => {
     // Verifica se color não foi fornecido ou é uma string vazia
     if (color === undefined || color.trim() === "") {
       // Atribui valor padrão se for undefined ou string vazia
-      color = "#FFFFFF";
+      color = "#858b98";
     }
 
     // Verifica se favorite não foi fornecido
